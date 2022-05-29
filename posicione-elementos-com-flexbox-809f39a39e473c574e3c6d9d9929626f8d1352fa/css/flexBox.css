@@ -1,0 +1,176 @@
+
+/*------------------- Alternativas para alinhar cabeçalho sem flex box ------------------*/
+
+/* .cabecalhoPrincipal-titulo {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 680px;
+}
+
+.cabecalhoPrincipal-nav {
+    display: inline-block;
+    vertical-align: middle;
+} 
+
+muito trabalhoso e ainda assim trabalhamos para a margin-left com numeros magicos, que são numeros que a gente ajusata px por px para aquela situação
+isso não é bom e a porcentagem é dificil de definir */
+
+
+/* .cabecalhoPrincipal-titulo {
+    float: left;
+}
+
+.cabecalhoPrincipal-nav {
+    float: right;
+}
+problema de que todos elementos acabam subindo*/
+
+
+
+/*--------------------- utilizando flexbox --------------------------*/
+
+/*~~~~~~~~~~~ CABEÇALHO~~~~~~~~~~~~~ */
+
+.cabecalhoPrincipal .container {/* pegamos o elemento pai dos filhos que queremos alinhar */
+    display: flex;
+    align-items: center; /* alinhar itens no centro (verticalmente) */
+    justify-content: space-between;/* o espaço vazio do container fica entre os elementos */
+
+}
+
+.cabecalhoPrincipal-nav {
+    display: flex;
+    /* aqui ja deu margin entre os itens pois tem um margin no outro css */
+    /* justify-content: space-between; não funciona pois não existe espaço vazio nessa div para que possa ser colocado entre os itens */
+}
+
+/* ~~~~~~~~~~~FOOTER~~~~~~~~~~ */
+
+.rodapePrincipal-patrocinadores .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rodapePrincipal-patrocinadores-list {
+    display: flex;
+    align-items: center;
+    width: 70%;/*para que tenha espaço para distribir no o space between/around */
+    margin-right: 5%;
+    justify-content: space-around;/*coloca o espaço em volta dos elementos filhos*/
+}
+
+.rodapePrincipal-contatoForm {
+    width: 25%;
+}
+
+.rodapePrincipal-contatoForm-fieldset {
+    display: flex;/*deixa o tamanho do botão igual ao do input*/
+}
+
+.rodapePrincipal-navMap-list {
+    display: flex;
+    flex-flow: column wrap;    
+    height: 16rem;/* equivale a 250px */
+    /* flex-wrap: wrap;
+    flex-direction: column; */
+}
+
+.conteudoPrincipal-cursos {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.conteudoPrincipal-cursos-link {
+    width: 23%;
+    margin: 1%;
+}
+
+.conteudoPrincipal-cursos-link:nth-child(4n) { /* tira a margem da direita dos multilos de 4 */
+    margin-right: 0;
+}
+
+.conteudoPrincipal-cursos-link:nth-child(4n+1) { /* tira a margem a esquerda dos multiplos de 4 + 1, começando por n = 0 */
+    margin-left: 0;
+}
+
+.videoSobre .container {
+    display: flex;
+}
+
+.videoSobre-sobre {
+    flex-grow: 1;
+    text-align: center;
+    display: flex; /* junto com o column fez o botao ficar do tamanho dos outros elementos filhos */
+    flex-direction: column; 
+    flex-grow: 2;
+}
+
+.videoSobre-video {
+    flex-grow: 1;
+    flex-shrink: 2;
+}
+
+.videoSobre-sobre-list {
+    flex-grow: 1;
+}
+
+/* --MOBILE-- */
+
+@media (max-width: 768px) {
+    
+
+    .cabecalhoPrincipal .container {
+        flex-direction: column;
+        align-items: initial;/* para por no aling-center inicial (padrão) ja que tava center e mudamos para column */
+        text-align: center
+    }
+
+    .cabecalhoPrincipal-nav {
+        flex-direction: column;
+    }
+
+    .conteudoPrincipal-cursos {
+        flex-direction: column;
+    }
+
+    .conteudoPrincipal-cursos-link {
+        width: 100%;
+    }
+
+    .rodapePrincipal-navMap-list {
+        flex-wrap: nowrap;
+        height: auto;
+    }
+
+    .rodapePrincipal .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .rodapePrincipal-patrocinadores-list {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .rodapePrincipal-contatoForm {
+        width: 100%;
+    }
+
+    .rodapePrincipal-contatoForm-fieldset {
+        justify-content: center; /* pois aqui os elementos estão no eixo row */
+    }
+
+    .cabecalhoPrincipal-nav-link-app {
+        order: -1;
+    }
+
+    .videoSobre .container {
+        flex-direction: column;
+    }
+
+    .videoSobre-video {
+        margin: 0 auto;
+    }
+
+}
